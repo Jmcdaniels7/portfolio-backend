@@ -1,0 +1,4 @@
+com\example\controller\PortfolioAppController.class
+com\example\PortfolioApplication.class
+com\example\repository\ProjectRepository.class
+com\example\service\ProjectService.class
