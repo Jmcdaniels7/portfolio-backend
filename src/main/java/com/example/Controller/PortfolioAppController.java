@@ -3,6 +3,8 @@ package com.example.Controller;
 import com.example.Entity.Project;
 import com.example.Service.ProjectService;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +20,16 @@ public class PortfolioAppController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/search")
-    public List<Project> getProjectByFrameworkOrByLanguage(@RequestParam String search) {
-        System.out.println("Received search param: " + search);
-        return projectService.getProjectByFrameworkOrByLanguage(search);
+    @GetMapping("/project/search")
+    public ResponseEntity<List<Project>> getProjectByFrameworkOrByLanguage(@RequestParam String search) {
+        List<Project> projects = projectService.getProjectByFrameworkOrByLanguage(search);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
-    
+
+    //made this endpoint because Postman wasn't returning results for a while
+    @GetMapping("/project")
+    public ResponseEntity<List<Project>> findAllProjects() {
+        List<Project> project = projectService.getAllProjects();
+        return new ResponseEntity<>(project, HttpStatus.OK);
+    }
 }

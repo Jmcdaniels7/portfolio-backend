@@ -21,13 +21,13 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     //utilizing query parameters
     @Query("""
-    SELECT p
-    FROM Project p
-    LEFT JOIN p.projectLanguages lang ON 
-    WHERE LOWER(p.projectFramework) LIKE LOWER(CONCAT('%', :search, '%'))
-       OR LOWER(lang) LIKE LOWER(CONCAT('%', :search, '%'))
+    SELECT DISTINCT p FROM Project p 
+    JOIN p.projectLanguages pl 
+    WHERE LOWER(p.projectFramework) LIKE LOWER(CONCAT('%', :search, '%')) 
+    OR LOWER(pl) LIKE LOWER(CONCAT('%', :search, '%'))
     """)
-    
     List<Project> findProjectByProjectFrameworkOrByLanguage(@Param("search") String search);
 
+
+    
 }
