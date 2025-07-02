@@ -17,12 +17,18 @@ public class ProjectService {
     {
         this.projectRepository = projectRepository;
     }
+
+    public List<Project> getAllProjects()
+    {
+        return projectRepository.findAll();
+    }
     
 
-    public List<Project> getProjectByFrameworkOrByLanguage(String search)
-    {
-        return projectRepository.findProjectByProjectFrameworkOrByLanguage(search);
+    public List<Project> getProjectByFrameworkOrByLanguage(String search) {
+        List<Project> result = projectRepository.findProjectByProjectFrameworkOrByLanguage(search);
+        return result;
     }
+
 
     /* 
     public List<Project> getProjectByFramework(String framework)
