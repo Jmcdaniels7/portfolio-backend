@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: jacob
+      POSTGRES_PASSWORD: Jacobm4120!
+      POSTGRES_DB: SpringPortfolioDB
+    ports:
+      - "5432:5432"
+
+  springboot-app:
+    image: java-application  # Replace this with jmcdaniels7/jm:latest when deploying
+    container_name: springboot-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SpringPortfolioDB
+      SPRING_DATASOURCE_USERNAME: jacob
+      SPRING_DATASOURCE_PASSWORD: Jacobm4120!
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+
