@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = {"http://localhost:3000", "https://jmcdaniels7.github.io"})
 @RestController
 @RequestMapping("/api")
 public class PortfolioAppController {
